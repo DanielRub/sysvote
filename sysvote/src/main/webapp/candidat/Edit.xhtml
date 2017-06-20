@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="CandidatEditDlg" widgetVar="CandidatEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{resourcebundle.EditCandidatTitle}" closeOnEscape="true">
+
+            <h:form id="CandidatEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{candidatController.selected != null}">
+
+
+                        <h:outputLabel value="#{resourcebundle.EditCandidatLabel_idCandidat}" for="idCandidat" />
+                        <h:outputText id="idCandidat" value="#{candidatController.selected.idCandidat}" />
+
+                        <p:outputLabel value="#{resourcebundle.EditCandidatLabel_nomCandidat}" for="nomCandidat" />
+                        <p:inputText id="nomCandidat" value="#{candidatController.selected.nomCandidat}" title="#{resourcebundle.EditCandidatTitle_nomCandidat}" required="true" requiredMessage="#{resourcebundle.EditCandidatRequiredMessage_nomCandidat}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{resourcebundle.EditCandidatLabel_postnomCandidat}" for="postnomCandidat" />
+                        <p:inputText id="postnomCandidat" value="#{candidatController.selected.postnomCandidat}" title="#{resourcebundle.EditCandidatTitle_postnomCandidat}" required="true" requiredMessage="#{resourcebundle.EditCandidatRequiredMessage_postnomCandidat}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{resourcebundle.EditCandidatLabel_prenomCandidat}" for="prenomCandidat" />
+                        <p:inputText id="prenomCandidat" value="#{candidatController.selected.prenomCandidat}" title="#{resourcebundle.EditCandidatTitle_prenomCandidat}" required="true" requiredMessage="#{resourcebundle.EditCandidatRequiredMessage_prenomCandidat}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{resourcebundle.EditCandidatLabel_genreCandidat}" for="genreCandidat" />
+                        <p:inputText id="genreCandidat" value="#{candidatController.selected.genreCandidat}" title="#{resourcebundle.EditCandidatTitle_genreCandidat}" required="true" requiredMessage="#{resourcebundle.EditCandidatRequiredMessage_genreCandidat}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{resourcebundle.EditCandidatLabel_faculte}" for="faculte" />
+                        <p:inputText id="faculte" value="#{candidatController.selected.faculte}" title="#{resourcebundle.EditCandidatTitle_faculte}" required="true" requiredMessage="#{resourcebundle.EditCandidatRequiredMessage_faculte}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{resourcebundle.EditCandidatLabel_promotion}" for="promotion" />
+                        <p:inputText id="promotion" value="#{candidatController.selected.promotion}" title="#{resourcebundle.EditCandidatTitle_promotion}" required="true" requiredMessage="#{resourcebundle.EditCandidatRequiredMessage_promotion}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{resourcebundle.EditCandidatLabel_photo}" for="photo" />
+                        <p:inputText id="photo" value="#{candidatController.selected.photo}" title="#{resourcebundle.EditCandidatTitle_photo}" required="true" requiredMessage="#{resourcebundle.EditCandidatRequiredMessage_photo}" size="30" maxlength="30"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{candidatController.save}" value="#{resourcebundle.Save}" update="display,:CandidatListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('CandidatEditDialog'));">
+                        <p:confirm header="#{resourcebundle.ConfirmationHeader}" message="#{resourcebundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{resourcebundle.Cancel}" oncomplete="PF('CandidatEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

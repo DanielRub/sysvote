@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://java.sun.com/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Système de vote</title>
+        <h:outputStylesheet library="css"  name="bootstrap.css" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <!-- Custom Theme files -->
+        <!--theme-style-->
+        <h:outputStylesheet library="css" name="style.css" />	
+        <!--//theme-style-->
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="Dealing Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+              Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+        <!--fonts-->
+        <h:outputStylesheet library="css" name="googlefont.css" />	
+        <!--//fonts-->
+    </h:head>
+    <h:body>
+        <!--header-->
+        <div class="header">
+            <div class="container">
+                <div class="header-top">	
+                    <div class="logo">
+                        <h1><h:link outcome="index.xhtml">Système de vote</h:link></h1>
+                    </div>
+                    <div class="top-nav">
+                        <span class="menu"> </span>
+                        <ul>
+                            <li><h:link outcome="result.xhtml" class="scroll">Résultat vote</h:link></li>
+                        </ul>
+                        <!--script-->
+
+                    </div>
+
+                    <div class="clearfix"> </div>
+                    <i class="shadow"> </i>
+                </div>
+            </div>
+        </div>
+        <!--banner-->
+        <h:form>
+            <div class="contact">
+                <div class="contact-head">
+                    <div class="container">
+                        <h2>Enrôlement de l'électeur</h2>
+                        <p:messages closable="true" />
+                        <div class="map">
+                            <div>
+                                <label for="nom" class="col-md-2">Nom:</label>
+                                <div class="col-md-9">
+                                    <h:inputText required="true" requiredMessage="Le nom ne doit pas être vide" value="#{electeurController.selected.nomElecteur}" class="form-control" id="nom" a:placeholder="Saisir le Nom"/>
+                                </div>
+
+                                <div class="col-md-1">
+                                    <i class="fa fa-lock fa-2x"></i>
+                                </div>
+                            </div>  
+                            <br/>
+                            <br/>
+                            <div>
+                                <label for="postnom" class="col-md-2">Postnom:</label>
+                                <div class="col-md-9">
+                                    <h:inputText  required="true" requiredMessage="Le postnom ne doit pas être vide"  value="#{electeurController.selected.postnomElecteur}" class="form-control" id="postnom" a:placeholder="Saisir le Post-nom"/>
+                                </div>
+                                <div class="col-md-1">
+                                    <i class="fa fa-lock fa-2x"></i>
+                                </div>
+                            </div><br/>
+                            <br/>
+                            <div>
+                                <label for="prenom" class="col-md-2">Prénom:</label>
+                                <div class="col-md-9">
+                                    <h:inputText required="true" requiredMessage="Le prénom ne doit pas être vide"  value="#{electeurController.selected.prenomElecteur}" class="form-control" id="prenom" a:placeholder="Saisir le Prénom"/>
+                                </div>
+                                <div class="col-md-1">
+                                    <i class="fa fa-lock fa-2x"></i>
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div>
+                                <label for="adress" class="col-md-2">Faculté:</label>
+                                <div class="col-md-9">
+                                    <h:selectOneMenu required="true" requiredMessage="L'adresse ne doit pas être vide"  value="#{electeurController.selected.faculte}" id="province" class="form-control">
+                                        <f:selectItem itemLabel="Choisir faculté" />
+                                        <f:selectItem itemLabel="Droit" itemValue="Droit" />
+                                        <f:selectItem itemLabel="Gestion" itemValue="Gestion" />
+                                        <f:selectItem itemLabel="Médecine" itemValue="Médecine"/>
+                                        <f:selectItem itemLabel="Psychologie" itemValue="Psychologie"/>
+                                        <f:selectItem itemLabel="Santé" itemValue="Santé"/>
+                                        <f:selectItem itemLabel="Technologies" itemValue="Technologies"/>
+                                        <f:selectItem itemLabel="Théologie" itemValue="Théologie"/>
+                                    </h:selectOneMenu>
+                                </div> 
+                                <div class="col-md-1">
+                                    <i class="fa fa-lock fa-2x"></i>
+                                </div>
+                            </div><br/>
+                            <br/>
+                            <div>
+                                <label for="profession" class="col-md-2">Promotion: </label>
+                                <div class="col-md-9">
+                                    <h:selectOneMenu required="true" requiredMessage="La promotion ne doit pas être vide"  value="#{electeurController.selected.promotion}" id="promotion" class="form-control">
+                                        <f:selectItem itemLabel="Choisir Promotion" />
+                                        <f:selectItem itemLabel="G1" itemValue="G1" />
+                                        <f:selectItem itemLabel="G2" itemValue="G2" />
+                                        <f:selectItem itemLabel="G3" itemValue="G3"/>
+                                        <f:selectItem itemLabel="L1" itemValue="L1"/>
+                                        <f:selectItem itemLabel="L2" itemValue="L2"/>
+                                        <f:selectItem itemLabel="TECH1" itemValue="TECH1"/>
+                                        <f:selectItem itemLabel="TECH2" itemValue="TECH2"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="col-md-1">
+                                    <i class="fa fa-lock fa-2x"></i>
+                                </div>
+                            </div><br/>
+                            <br/>
+                            <div>
+                                <label for="sex" class="col-md-2">
+                                    Genre:
+                                </label>
+                                <div class="col-md-10">
+                                    <p:selectOneMenu required="true" requiredMessage="Le genre ne doit pas être vide"  value="#{electeurController.selected.genreElecteur}">
+                                        <f:selectItem itemLabel="Masculin"  itemValue="Masculin" />
+                                        <f:selectItem itemLabel="Féminin" itemValue="Féminin" />
+                                    </p:selectOneMenu>
+                                </div>             
+                            </div>
+                            <br/>
+                            <br/>
+                            <ui:remove>
+                                <div>
+                                    <label for="province" class="col-md-2">Photo: </label>
+                                    <div class="col-md-10">
+                                        <p:confirmDialog
+                                            message="Capture de l'image"
+                                            header="Capture de l'image" 
+                                            widgetVar="ci">
+                                            <p:panelGrid columns="2">
+                                                <p:photoCam format="png"  widgetVar="pc" listener="#{electeurController.oncapture}" update="photo" />
+                                                <p:outputPanel id="photo">
+                                                    <p:graphicImage value="#{electeurController.getStreamedContent(electeurController.filename)}" rendered="#{not empty electeurController.filename}"/>
+                                                </p:outputPanel>
+                                            </p:panelGrid>
+                                            <p:commandButton  type="button" value="Capture" onclick="PF('pc').capture()"/>
+                                            <p:commandButton value="Annuler" oncomplete="PF('ci').hide()" /> 
+                                        </p:confirmDialog>   
+                                        <p:commandButton  type="button" onclick="PF('ci').show()" value="Capturer l'image"/>
+                                    </div>
+                                </div>
+                            </ui:remove>
+                            <br/>
+                            <br/>
+                            <div>
+                                <label for="empreinte" class="col-md-2"></label> 
+                                <div class="col-md-10">
+                                    <p:confirmDialog
+                                        message="Placer l'empreinte"
+                                        header="Capture de l'empreinte" 
+                                        widgetVar="cd">
+                                        <p:poll update="myimg" interval="4" />
+                                        <p:panel id="myimg">
+                                            <h:graphicImage rendered="#{empty electeurController.digitprint}" height="280" width="220" library="img" name="empreinte.gif" />
+                                            <h:graphicImage rendered="#{not empty electeurController.digitprint}" height="280" width="220" library="img" name="empreintOK.png" />
+                                        </p:panel>
+                                        <h:inputText   value="#{electeurController.digitprint}" class="form-control" id="emprunte" />
+                                        <p:commandButton value="Valider" oncomplete="PF('cd').hide()" /> 
+                                    </p:confirmDialog>   
+                                    <p:commandButton  actionListener="#{electeurController.captureEmpreinte}"   onclick="PF('cd').show()" value="Capturer l'empreinte digitale"/>
+                                </div>
+                            </div><br/>
+                            <br/>
+                            <div>
+                                <label for="empreinte" class="col-md-2"></label> 
+                                <div class="col-md-10 send">
+                                    <h:commandButton actionListener="#{electeurController.saveNew}" value="Valider" />
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+
+        </h:form>
+
+        <!--footer-->
+        <div class="footer">
+            <div class="container">
+                <p class="footer-grid">Copyright &copy; 2016 <a href="http://facebook.com/bonbahati" target="_blank">Bahati Bahanule</a> Système de vote </p>
+            </div> 	
+        </div>
+
+
+    </h:body>
+</html>

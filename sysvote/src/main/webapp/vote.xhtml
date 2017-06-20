@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Système de vote</title>
+        <h:outputStylesheet library="css"  name="bootstrap.css" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <h:outputScript library="js"  name="jquery.min.js"/>
+        <!-- Custom Theme files -->
+        <!--theme-style-->
+        <h:outputStylesheet library="css" name="style.css" />	
+        <!--//theme-style-->
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="Dealing Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+              Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+
+        <h:outputStylesheet library="css" name="googlefont.css" />	
+        <!--//fonts-->
+    </h:head>
+    <h:body>
+        <!--header-->
+        <div class="header">
+            <div class="container">
+                <div class="header-top">	
+                    <div class="logo">
+                        <h1><h:link outcome="index.xhtml">Système de vote</h:link></h1>
+                    </div>
+                    <div class="top-nav">
+                        <span class="menu"> </span>
+                        <ul>
+                            <li><h:link outcome="result.xhtml" class="scroll">Résultat vote</h:link></li>
+                        </ul>
+                    </div>
+
+                    <div class="clearfix"> </div>
+                    <i class="shadow"> </i>
+                </div>
+            </div>
+        </div>
+        <!--banner-->
+        <div class="banner">
+            <div class="container">
+                <div class="banner-top">
+                    <h:form>
+                        <h2> Cliquez sur le nom de votre candidat pour voter</h2>
+                        <br/>
+                        <ui:repeat value="#{candidatController.items}" var="item">
+                            <div class="col-md-3 team-grid-left">
+                                <div class="team-top">
+                                    <a href="elire.xhtml">
+                                        <p:graphicImage class="img-responsive" value="#{candidatController.getStreamedContentPic(item.photoName)}" />
+                                    </a>
+                                </div>
+                                <h4> #{item.nomCandidat} #{item.postnomCandidat} #{item.prenomCandidat} </h4>
+                                <p>#{item.typeCandidat}</p>									
+                            </div>
+                        </ui:repeat>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+        <div class="back">
+            <i class="shadow-grid"> </i>
+        </div>
+        <!--footer-->
+        <div class="footer">
+            <div class="container">
+                <p class="footer-grid">Copyright &copy; 2016 <a href="http://facebook.com/bonbahati" target="_blank">Bahati Bahanule</a> Système de vote </p>
+            </div> 	
+        </div>
+
+
+    </h:body>
+</html>

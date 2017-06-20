@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://java.sun.com/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+      <h:head> 	
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/> 
+        <meta name="description" content="fresh Gray Bootstrap 3.0 Responsive Theme"/>
+        <meta name="keywords" content="Template, Theme, web, html5, css3, Bootstrap,Bootstrap 3.0 Responsive Theme"/>
+        <meta name="author" content="Mindfreakerstuff"/>
+
+        <title>Login</title>
+        <!-- Bootstrap core CSS -->
+        <h:outputStylesheet library="css"  name="bootstrap.css"/>
+        <!-- Custom styles for this template -->
+        <h:outputStylesheet library="css"  name="login.css" />
+        <h:outputStylesheet library="css"  name="animate-custom.css" />
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://hungerfreethemes.com/preview/login-pack1/login3/js/html5shiv.js"></script>
+          <script src="js/respond.min.js"></script>
+        <![endif]-->
+    </h:head>
+    <h:body>
+        <!-- start Login box -->
+        <div class="container" id="login-block">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
+                    <h3 class="animated bounceInDown">Login</h3>
+                    <div class="login-box clearfix animated flipInY">
+                        <div class="login-logo">
+                            <h:graphicImage library="img" name="login-logo.png" alt="Company Logo" />
+                        </div> 
+                        <hr />
+                        <div class="login-form">
+                            <div class="alert alert-error hide">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <h4>Error!</h4>
+                                Your Error Message goes here
+                            </div>
+                            <h:form>
+                                <p:messages closable="true"/>
+                                <h:inputText requiredMessage="Veillez entrer une adresse email" validator="#{validator.validateEmail}" value="#{login.login}"  a:placeholder="email" required="true"/> 
+                                <h:inputSecret requiredMessage="Veillez entrer un mot de passe" validator="#{validator.validateString}" value="#{login.password}"  a:placeholder="mot de passe" required="true"/> 
+                                <h:commandButton action="#{login.validateUsernamePassword()}" class="btn btn-login" value="login" />
+                            </h:form>	
+                            <div class="login-links"> 
+                                <a href="forgot-password.html">
+                                    Forgot password?
+                                </a>
+                                <br />
+                                <a href="sign-up.html">
+                                    Don't have an account? <strong>Sign Up</strong>
+                                </a>
+                            </div>      		
+                        </div> 			        	
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End Login box -->
+        <footer class="container">
+            <p id="footer-text"><small>Copyright &copy; 2017 <a href="http://facebook.com/bonbahati">Bahati Bahanule</a> Système de vote</small></p>
+        </footer>
+        <!--
+        <script>window.jQuery || document.write('<script src='js/jquery-1.9.1.min.js'><\/script>')</script> 
+        -->
+        <h:outputScript library="js" name="bootstrap.min.js"/>
+        <h:outputScript library="js" name="placeholder-shim.min.js"/>  
+        <h:outputScript library="js" name="custom.js"/>
+    </h:body>
+</html>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="AdminEditDlg" widgetVar="AdminEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{resourcebundle.EditAdminTitle}" closeOnEscape="true">
+
+            <h:form id="AdminEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{adminController.selected != null}">
+
+
+                        <h:outputLabel value="#{resourcebundle.EditAdminLabel_idAdmin}" for="idAdmin" />
+                        <h:outputText id="idAdmin" value="#{adminController.selected.idAdmin}" />
+
+                        <p:outputLabel value="#{resourcebundle.EditAdminLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{adminController.selected.nom}" title="#{resourcebundle.EditAdminTitle_nom}" required="true" requiredMessage="#{resourcebundle.EditAdminRequiredMessage_nom}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{resourcebundle.EditAdminLabel_login}" for="login" />
+                        <p:inputText id="login" value="#{adminController.selected.login}" title="#{resourcebundle.EditAdminTitle_login}" required="true" requiredMessage="#{resourcebundle.EditAdminRequiredMessage_login}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{resourcebundle.EditAdminLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{adminController.selected.password}" title="#{resourcebundle.EditAdminTitle_password}" required="true" requiredMessage="#{resourcebundle.EditAdminRequiredMessage_password}" size="20" maxlength="20"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{adminController.save}" value="#{resourcebundle.Save}" update="display,:AdminListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AdminEditDialog'));">
+                        <p:confirm header="#{resourcebundle.ConfirmationHeader}" message="#{resourcebundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{resourcebundle.Cancel}" oncomplete="PF('AdminEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

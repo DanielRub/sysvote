@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ElecteurViewDlg" widgetVar="ElecteurViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{resourcebundle.ViewElecteurTitle}" closeOnEscape="true">
+
+            <h:form id="ElecteurViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{electeurController.selected != null}">
+
+                        <h:outputText value="#{resourcebundle.ViewElecteurLabel_idElecteur}"/>
+                        <h:outputText value="#{electeurController.selected.idElecteur}" title="#{resourcebundle.ViewElecteurTitle_idElecteur}"/>
+
+                        <h:outputText value="#{resourcebundle.ViewElecteurLabel_nomElecteur}"/>
+                        <h:outputText value="#{electeurController.selected.nomElecteur}" title="#{resourcebundle.ViewElecteurTitle_nomElecteur}"/>
+
+                        <h:outputText value="#{resourcebundle.ViewElecteurLabel_postnomElecteur}"/>
+                        <h:outputText value="#{electeurController.selected.postnomElecteur}" title="#{resourcebundle.ViewElecteurTitle_postnomElecteur}"/>
+
+                        <h:outputText value="#{resourcebundle.ViewElecteurLabel_prenomElecteur}"/>
+                        <h:outputText value="#{electeurController.selected.prenomElecteur}" title="#{resourcebundle.ViewElecteurTitle_prenomElecteur}"/>
+
+                        <h:outputText value="#{resourcebundle.ViewElecteurLabel_genreElecteur}"/>
+                        <h:outputText value="#{electeurController.selected.genreElecteur}" title="#{resourcebundle.ViewElecteurTitle_genreElecteur}"/>
+
+                        <h:outputText value="#{resourcebundle.ViewElecteurLabel_faculte}"/>
+                        <h:outputText value="#{electeurController.selected.faculte}" title="#{resourcebundle.ViewElecteurTitle_faculte}"/>
+
+                        <h:outputText value="#{resourcebundle.ViewElecteurLabel_promotion}"/>
+                        <h:outputText value="#{electeurController.selected.promotion}" title="#{resourcebundle.ViewElecteurTitle_promotion}"/>
+
+                        <h:outputText value="#{resourcebundle.ViewElecteurLabel_empreinte}"/>
+                        <h:outputText value="#{electeurController.selected.empreinte}" title="#{resourcebundle.ViewElecteurTitle_empreinte}"/>
+
+                        <h:outputText value="#{resourcebundle.ViewElecteurLabel_idCandidatVote}"/>
+                        <h:outputText value="#{electeurController.selected.idCandidatVote.idCandidat}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{resourcebundle.Close}" onclick="PF('ElecteurViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

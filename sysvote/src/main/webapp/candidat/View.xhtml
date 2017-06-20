@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CandidatViewDlg" widgetVar="CandidatViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{resourcebundle.ViewCandidatTitle}" closeOnEscape="true">
+
+            <h:form id="CandidatViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{candidatController.selected != null}">
+
+                        <h:outputText value="#{resourcebundle.ViewCandidatLabel_idCandidat}"/>
+                        <h:outputText value="#{candidatController.selected.idCandidat}" title="#{resourcebundle.ViewCandidatTitle_idCandidat}"/>
+
+                        <h:outputText value="#{resourcebundle.ViewCandidatLabel_nomCandidat}"/>
+                        <h:outputText value="#{candidatController.selected.nomCandidat}" title="#{resourcebundle.ViewCandidatTitle_nomCandidat}"/>
+
+                        <h:outputText value="#{resourcebundle.ViewCandidatLabel_postnomCandidat}"/>
+                        <h:outputText value="#{candidatController.selected.postnomCandidat}" title="#{resourcebundle.ViewCandidatTitle_postnomCandidat}"/>
+
+                        <h:outputText value="#{resourcebundle.ViewCandidatLabel_prenomCandidat}"/>
+                        <h:outputText value="#{candidatController.selected.prenomCandidat}" title="#{resourcebundle.ViewCandidatTitle_prenomCandidat}"/>
+
+                        <h:outputText value="#{resourcebundle.ViewCandidatLabel_genreCandidat}"/>
+                        <h:outputText value="#{candidatController.selected.genreCandidat}" title="#{resourcebundle.ViewCandidatTitle_genreCandidat}"/>
+
+                        <h:outputText value="#{resourcebundle.ViewCandidatLabel_faculte}"/>
+                        <h:outputText value="#{candidatController.selected.faculte}" title="#{resourcebundle.ViewCandidatTitle_faculte}"/>
+
+                        <h:outputText value="#{resourcebundle.ViewCandidatLabel_promotion}"/>
+                        <h:outputText value="#{candidatController.selected.promotion}" title="#{resourcebundle.ViewCandidatTitle_promotion}"/>
+
+                        <h:outputText value="#{resourcebundle.ViewCandidatLabel_photo}"/>
+                        <h:outputText value="#{candidatController.selected.photo}" title="#{resourcebundle.ViewCandidatTitle_photo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{resourcebundle.Close}" onclick="PF('CandidatViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

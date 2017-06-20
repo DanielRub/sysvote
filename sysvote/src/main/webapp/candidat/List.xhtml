@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="CandidatListForm">
+
+        <p:panel header="#{resourcebundle.ListCandidatTitle}">
+            <p:contextMenu id="CandidatDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{resourcebundle.Create}" onclick="document.getElementById('CandidatListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{resourcebundle.View}" onclick="document.getElementById('CandidatListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{resourcebundle.Edit}" onclick="document.getElementById('CandidatListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{resourcebundle.Delete}" onclick="document.getElementById('CandidatListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{resourcebundle.CandidatMenuItem_electeurCollection}" icon="ui-icon-search"  action="#{candidatController.navigateElecteurCollection}" disabled="#{empty candidatController.selected.electeurCollection}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{candidatController.items}"
+                         lazy="false"
+                         rowKey="#{item.idCandidat}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{candidatController.selected}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{candidatController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.idCandidat}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:CandidatDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:CandidatDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('CandidatListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.idCandidat}" filterBy="#{item.idCandidat}">
+                    <f:facet name="header">
+                        <h:outputText value="#{resourcebundle.ListCandidatTitle_idCandidat}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idCandidat}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.nomCandidat}" filterBy="#{item.nomCandidat}">
+                    <f:facet name="header">
+                        <h:outputText value="#{resourcebundle.ListCandidatTitle_nomCandidat}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nomCandidat}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.postnomCandidat}" filterBy="#{item.postnomCandidat}">
+                    <f:facet name="header">
+                        <h:outputText value="#{resourcebundle.ListCandidatTitle_postnomCandidat}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.postnomCandidat}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.prenomCandidat}" filterBy="#{item.prenomCandidat}">
+                    <f:facet name="header">
+                        <h:outputText value="#{resourcebundle.ListCandidatTitle_prenomCandidat}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.prenomCandidat}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.genreCandidat}" filterBy="#{item.genreCandidat}">
+                    <f:facet name="header">
+                        <h:outputText value="#{resourcebundle.ListCandidatTitle_genreCandidat}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.genreCandidat}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.faculte}" filterBy="#{item.faculte}">
+                    <f:facet name="header">
+                        <h:outputText value="#{resourcebundle.ListCandidatTitle_faculte}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.faculte}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.promotion}" filterBy="#{item.promotion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{resourcebundle.ListCandidatTitle_promotion}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.promotion}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.photo}" filterBy="#{item.photo}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{resourcebundle.ListCandidatTitle_photo}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.photo}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{resourcebundle.Create}" actionListener="#{candidatController.prepareCreate}" update=":CandidatCreateForm" oncomplete="PF('CandidatCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{resourcebundle.View}" update=":CandidatViewForm" oncomplete="PF('CandidatViewDialog').show()" disabled="#{empty candidatController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{resourcebundle.Edit}" update=":CandidatEditForm" oncomplete="PF('CandidatEditDialog').show()" disabled="#{empty candidatController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{resourcebundle.Delete}" actionListener="#{candidatController.delete}" update=":growl,datalist" disabled="#{empty candidatController.selected}">
+                <p:confirm header="#{resourcebundle.ConfirmationHeader}" message="#{resourcebundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

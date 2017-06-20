@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="ElecteurListForm">
+
+        <p:panel header="#{resourcebundle.ListElecteurTitle}">
+            <p:contextMenu id="ElecteurDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{resourcebundle.Create}" onclick="document.getElementById('ElecteurListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{resourcebundle.View}" onclick="document.getElementById('ElecteurListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{resourcebundle.Edit}" onclick="document.getElementById('ElecteurListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{resourcebundle.Delete}" onclick="document.getElementById('ElecteurListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{resourcebundle.ElecteurMenuItem_idCandidatVote}" icon="ui-icon-search"  actionListener="#{electeurController.prepareIdCandidatVote}" update=":CandidatViewForm" oncomplete="PF('CandidatViewDialog').show()" disabled="#{empty electeurController.selected.idCandidatVote}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{electeurController.items}"
+                         lazy="false"
+                         rowKey="#{item.idElecteur}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{electeurController.selected}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{electeurController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.idElecteur}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:ElecteurDataTableContextMenu" listener="#{electeurController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:ElecteurDataTableContextMenu" listener="#{electeurController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{electeurController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('ElecteurListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.idElecteur}" filterBy="#{item.idElecteur}">
+                    <f:facet name="header">
+                        <h:outputText value="#{resourcebundle.ListElecteurTitle_idElecteur}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idElecteur}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.nomElecteur}" filterBy="#{item.nomElecteur}">
+                    <f:facet name="header">
+                        <h:outputText value="#{resourcebundle.ListElecteurTitle_nomElecteur}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nomElecteur}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.postnomElecteur}" filterBy="#{item.postnomElecteur}">
+                    <f:facet name="header">
+                        <h:outputText value="#{resourcebundle.ListElecteurTitle_postnomElecteur}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.postnomElecteur}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.prenomElecteur}" filterBy="#{item.prenomElecteur}">
+                    <f:facet name="header">
+                        <h:outputText value="#{resourcebundle.ListElecteurTitle_prenomElecteur}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.prenomElecteur}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.genreElecteur}" filterBy="#{item.genreElecteur}">
+                    <f:facet name="header">
+                        <h:outputText value="#{resourcebundle.ListElecteurTitle_genreElecteur}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.genreElecteur}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.faculte}" filterBy="#{item.faculte}">
+                    <f:facet name="header">
+                        <h:outputText value="#{resourcebundle.ListElecteurTitle_faculte}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.faculte}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.promotion}" filterBy="#{item.promotion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{resourcebundle.ListElecteurTitle_promotion}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.promotion}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.empreinte}" filterBy="#{item.empreinte}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{resourcebundle.ListElecteurTitle_empreinte}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.empreinte}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.idCandidatVote.idCandidat}" filterBy="#{item.idCandidatVote.idCandidat}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{resourcebundle.ListElecteurTitle_idCandidatVote}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idCandidatVote.idCandidat}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{resourcebundle.Create}" actionListener="#{electeurController.prepareCreate}" update=":ElecteurCreateForm" oncomplete="PF('ElecteurCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{resourcebundle.View}" update=":ElecteurViewForm" oncomplete="PF('ElecteurViewDialog').show()" disabled="#{empty electeurController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{resourcebundle.Edit}" update=":ElecteurEditForm" oncomplete="PF('ElecteurEditDialog').show()" disabled="#{empty electeurController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{resourcebundle.Delete}" actionListener="#{electeurController.delete}" update=":growl,datalist" disabled="#{empty electeurController.selected}">
+                <p:confirm header="#{resourcebundle.ConfirmationHeader}" message="#{resourcebundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

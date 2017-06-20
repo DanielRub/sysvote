@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ElecteurEditDlg" widgetVar="ElecteurEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{resourcebundle.EditElecteurTitle}" closeOnEscape="true">
+
+            <h:form id="ElecteurEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{electeurController.selected != null}">
+
+
+                        <h:outputLabel value="#{resourcebundle.EditElecteurLabel_idElecteur}" for="idElecteur" />
+                        <h:outputText id="idElecteur" value="#{electeurController.selected.idElecteur}" />
+
+                        <p:outputLabel value="#{resourcebundle.EditElecteurLabel_nomElecteur}" for="nomElecteur" />
+                        <p:inputText id="nomElecteur" value="#{electeurController.selected.nomElecteur}" title="#{resourcebundle.EditElecteurTitle_nomElecteur}" required="true" requiredMessage="#{resourcebundle.EditElecteurRequiredMessage_nomElecteur}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{resourcebundle.EditElecteurLabel_postnomElecteur}" for="postnomElecteur" />
+                        <p:inputText id="postnomElecteur" value="#{electeurController.selected.postnomElecteur}" title="#{resourcebundle.EditElecteurTitle_postnomElecteur}" required="true" requiredMessage="#{resourcebundle.EditElecteurRequiredMessage_postnomElecteur}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{resourcebundle.EditElecteurLabel_prenomElecteur}" for="prenomElecteur" />
+                        <p:inputText id="prenomElecteur" value="#{electeurController.selected.prenomElecteur}" title="#{resourcebundle.EditElecteurTitle_prenomElecteur}" required="true" requiredMessage="#{resourcebundle.EditElecteurRequiredMessage_prenomElecteur}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{resourcebundle.EditElecteurLabel_genreElecteur}" for="genreElecteur" />
+                        <p:inputText id="genreElecteur" value="#{electeurController.selected.genreElecteur}" title="#{resourcebundle.EditElecteurTitle_genreElecteur}" required="true" requiredMessage="#{resourcebundle.EditElecteurRequiredMessage_genreElecteur}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{resourcebundle.EditElecteurLabel_faculte}" for="faculte" />
+                        <p:inputText id="faculte" value="#{electeurController.selected.faculte}" title="#{resourcebundle.EditElecteurTitle_faculte}" required="true" requiredMessage="#{resourcebundle.EditElecteurRequiredMessage_faculte}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{resourcebundle.EditElecteurLabel_promotion}" for="promotion" />
+                        <p:inputText id="promotion" value="#{electeurController.selected.promotion}" title="#{resourcebundle.EditElecteurTitle_promotion}" required="true" requiredMessage="#{resourcebundle.EditElecteurRequiredMessage_promotion}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{resourcebundle.EditElecteurLabel_empreinte}" for="empreinte" />
+                        <p:inputText id="empreinte" value="#{electeurController.selected.empreinte}" title="#{resourcebundle.EditElecteurTitle_empreinte}" required="true" requiredMessage="#{resourcebundle.EditElecteurRequiredMessage_empreinte}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{resourcebundle.EditElecteurLabel_idCandidatVote}" for="idCandidatVote" />
+                        <p:selectOneMenu id="idCandidatVote" value="#{electeurController.selected.idCandidatVote}"  converter="candidatConverter">
+                            <f:selectItem itemLabel="#{resourcebundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{candidatController.items}"
+                                           var="idCandidatVoteItem"
+                                           itemValue="#{idCandidatVoteItem}"
+                                           itemLabel="#{idCandidatVoteItem.idCandidat.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{electeurController.save}" value="#{resourcebundle.Save}" update="display,:ElecteurListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ElecteurEditDialog'));">
+                        <p:confirm header="#{resourcebundle.ConfirmationHeader}" message="#{resourcebundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{resourcebundle.Cancel}" oncomplete="PF('ElecteurEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

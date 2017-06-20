@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AdminViewDlg" widgetVar="AdminViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{resourcebundle.ViewAdminTitle}" closeOnEscape="true">
+
+            <h:form id="AdminViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{adminController.selected != null}">
+
+                        <h:outputText value="#{resourcebundle.ViewAdminLabel_idAdmin}"/>
+                        <h:outputText value="#{adminController.selected.idAdmin}" title="#{resourcebundle.ViewAdminTitle_idAdmin}"/>
+
+                        <h:outputText value="#{resourcebundle.ViewAdminLabel_nom}"/>
+                        <h:outputText value="#{adminController.selected.nom}" title="#{resourcebundle.ViewAdminTitle_nom}"/>
+
+                        <h:outputText value="#{resourcebundle.ViewAdminLabel_login}"/>
+                        <h:outputText value="#{adminController.selected.login}" title="#{resourcebundle.ViewAdminTitle_login}"/>
+
+                        <h:outputText value="#{resourcebundle.ViewAdminLabel_password}"/>
+                        <h:outputText value="#{adminController.selected.password}" title="#{resourcebundle.ViewAdminTitle_password}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{resourcebundle.Close}" onclick="PF('AdminViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="AdminListForm">
+
+        <p:panel header="#{resourcebundle.ListAdminTitle}">
+            <p:contextMenu id="AdminDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{resourcebundle.Create}" onclick="document.getElementById('AdminListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{resourcebundle.View}" onclick="document.getElementById('AdminListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{resourcebundle.Edit}" onclick="document.getElementById('AdminListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{resourcebundle.Delete}" onclick="document.getElementById('AdminListForm:deleteButton').click();" icon="ui-icon-trash"/>
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{adminController.items}"
+                         lazy="false"
+                         rowKey="#{item.idAdmin}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{adminController.selected}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{adminController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.idAdmin}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:AdminDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:AdminDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('AdminListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.idAdmin}" filterBy="#{item.idAdmin}">
+                    <f:facet name="header">
+                        <h:outputText value="#{resourcebundle.ListAdminTitle_idAdmin}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idAdmin}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.nom}" filterBy="#{item.nom}">
+                    <f:facet name="header">
+                        <h:outputText value="#{resourcebundle.ListAdminTitle_nom}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nom}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.login}" filterBy="#{item.login}">
+                    <f:facet name="header">
+                        <h:outputText value="#{resourcebundle.ListAdminTitle_login}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.login}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.password}" filterBy="#{item.password}">
+                    <f:facet name="header">
+                        <h:outputText value="#{resourcebundle.ListAdminTitle_password}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.password}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{resourcebundle.Create}" actionListener="#{adminController.prepareCreate}" update=":AdminCreateForm" oncomplete="PF('AdminCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{resourcebundle.View}" update=":AdminViewForm" oncomplete="PF('AdminViewDialog').show()" disabled="#{empty adminController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{resourcebundle.Edit}" update=":AdminEditForm" oncomplete="PF('AdminEditDialog').show()" disabled="#{empty adminController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{resourcebundle.Delete}" actionListener="#{adminController.delete}" update=":growl,datalist" disabled="#{empty adminController.selected}">
+                <p:confirm header="#{resourcebundle.ConfirmationHeader}" message="#{resourcebundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

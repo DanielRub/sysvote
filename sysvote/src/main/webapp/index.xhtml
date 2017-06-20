@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Système de vote</title>
+        <h:outputStylesheet library="css"  name="bootstrap.css" />
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <h:outputScript library="js"  name="jquery.min.js"/>
+        <!-- Custom Theme files -->
+        <!--theme-style-->
+        <h:outputStylesheet library="css" name="style.css" />	
+        <!--//theme-style-->
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="Dealing Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+              Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <!--fonts-->
+        <h:outputStylesheet library="css" name="googlefont.css" />	
+        <!--//fonts-->
+    </h:head>
+    <h:body>
+        <!--header-->
+        <div class="header">
+            <div class="container">
+                <div class="header-top">	
+                    <div class="logo">
+                        <h1><h:link outcome="index.xhtml">Système de vote</h:link></h1>
+                    </div>
+                    <div class="top-nav">
+                        <h:form>
+                            <span class="menu"> </span>
+                            <ul>
+                                <li><h:link outcome="result.xhtml" class="scroll">Résultat vote</h:link></li>
+                                <h:commandButton action="#{login.logout()}" class="btn btn-login" value="Déconnexion" />
+                            </ul>
+                            <!--script-->
+                        </h:form>
+                        <script>
+                            $("span.menu").click(function () {
+                                $(".top-nav ul").slideToggle(500, function () {
+                                });
+                            });
+                        </script>
+                    </div>
+
+                    <div class="clearfix"> </div>
+                    <i class="shadow"> </i>
+                </div>
+            </div>
+        </div>
+        <!--banner-->
+        <div class="banner">
+            <div class="container">
+                <div class="banner-top">
+                    <div class="col-md-4 banner-grid">
+                        <h:graphicImage library="img" name="bu.png" />
+                        <h5><h:link outcome="enroler.xhtml" class="scroll">Enrôler électeur</h:link></h5>
+
+                    </div>
+                    <div class="col-md-4 banner-grid banner-grid-1">
+                        <h:graphicImage library="img" name="se.png" />
+                        <h5><h:link outcome="candidat.xhtml" class="scroll">Enregistrer candidat</h:link></h5>
+
+                    </div>
+                    <div class="col-md-4 banner-grid banner-grid-2">
+                        <h:graphicImage library="img" name="cu.png" />
+                        <h5><h:link outcome="vote.xhtml" class="scroll">Ouvrir page de vote</h:link></h5>
+
+                    </div>
+                    <div class="clearfix"> </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="back">
+            <i class="shadow-grid"> </i>
+        </div>
+        <!--footer-->
+        <div class="footer">
+            <div class="container">
+                <p class="footer-grid">Copyright &copy; 2016 <a href="http://facebook.com/bonbahati" target="_blank">Bahati Bahanule</a> Système de vote </p>
+            </div> 	
+        </div>
+
+
+    </h:body>
+</html>
