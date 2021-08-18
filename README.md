@@ -1,2 +1,2 @@
 # sysvote
-vote system with digital print
+A java vote system with fingerprint 
